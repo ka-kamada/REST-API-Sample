@@ -1,6 +1,7 @@
 package com.example.repository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -25,5 +26,11 @@ public interface UserMapper {
 
 	/** 全件検索 */
 	public List<User> getUserAll();
+
+	/** ID検索 */
+	public User getUserId(String id);
+
+	/** 削除 */
+	public void deleteUser(@Param("id") String id, @Param("deletedAt") LocalDateTime deletedAt);
 
 }

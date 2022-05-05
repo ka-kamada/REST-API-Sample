@@ -34,8 +34,6 @@ public class UserServiceImpl implements UserService {
 
 		user.setUpdatedBy(user.getCreatedBy());
 
-		System.out.println(user);
-
 		this.mapper.setUser(user);
 	}
 
@@ -83,6 +81,25 @@ public class UserServiceImpl implements UserService {
 		List<User> list = this.mapper.getUserAll();
 
 		return list;
+	}
+
+	/** ID検索 */
+	@Override
+	public User readUserId(String id) {
+
+		User user = this.mapper.getUserId(id);
+
+		return user;
+	}
+
+	/** 削除 */
+	@Override
+	public void deleteUser(User user) {
+
+		user.setDeletedAt(LocalDateTime.now());
+
+		this.mapper.deleteUser(user.getId(), user.getDeletedAt());
+
 	}
 
 }

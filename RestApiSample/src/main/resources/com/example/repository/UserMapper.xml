@@ -52,5 +52,18 @@
 		resultType="com.example.bean.User">
 		select * from user where deleted = 0
 	</select>
+	
+	<select id="getUserId"
+		resultType="com.example.bean.User">
+		select * from user where id = #{id} and deleted = 0
+	</select>
+	
+	<!-- ユーザー削除 -->
+	<update id="deleteUser">
+	    update user set 
+	    deleted = '1' 
+	    , deleted_at = #{deletedAt}
+	    where id = #{id}
+	</update>
 
 </mapper>

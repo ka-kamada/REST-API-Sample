@@ -28,9 +28,6 @@ public class RegisterUserController {
 
 		this.userService.createUser(user);
 
-
-		// return "\"message\": \"user signed up\"";
-
 	}
 
 }

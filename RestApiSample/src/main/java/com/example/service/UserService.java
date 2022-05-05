@@ -22,4 +22,10 @@ public interface UserService {
 	/** 全件検索 */
 	public List<User> readUserAll();
 
+	/** ID検索 */
+	public User readUserId(String id);
+
+	/** 削除 */
+	public void deleteUser(User user);
+
 }

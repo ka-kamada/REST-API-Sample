@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.example.bean.User;
+import com.example.bean.UserForm;
 
 public interface UserService {
 
@@ -27,5 +28,8 @@ public interface UserService {
 
 	/** 削除 */
 	public void deleteUser(User user);
+
+	/** 更新 */
+	public void updateUser(User user, UserForm form);
 
 }

@@ -65,5 +65,14 @@
 	    , deleted_at = #{deletedAt}
 	    where id = #{id}
 	</update>
+	
+	<!-- ユーザー更新 -->
+	<update id="updateUser">
+	    update user set 
+	    name = #{name}
+	    , birthdate = #{birthdate} 
+	    , updated_at = #{updatedAt}
+	    where id = #{id}
+	</update>
 
 </mapper>

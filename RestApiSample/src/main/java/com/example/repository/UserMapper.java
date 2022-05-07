@@ -33,4 +33,7 @@ public interface UserMapper {
 	/** 削除 */
 	public void deleteUser(@Param("id") String id, @Param("deletedAt") LocalDateTime deletedAt);
 
+	/** 更新 */
+	public void updateUser(User user);
+
 }

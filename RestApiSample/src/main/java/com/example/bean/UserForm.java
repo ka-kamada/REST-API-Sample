@@ -18,11 +18,6 @@ public class UserForm {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthdate;
 
-	@NotNull
-	private String createdBy;
-
-	private String updatedBy;
-
-	private String deletedBy;
+	private String createdBy = "api";
 
 }

@@ -111,7 +111,6 @@ public class UserServiceImpl implements UserService {
 		user.setBirthdate(form.getBirthdate());
 		user.setUpdatedAt(LocalDateTime.now());
 
-		// 更新者は未実装
 
 		this.mapper.updateUser(user);
 

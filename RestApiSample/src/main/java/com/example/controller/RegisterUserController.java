@@ -8,25 +8,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bean.User;
 import com.example.bean.UserForm;
-import com.example.service.UserService;
+import com.example.service.RegisterUserService;
 
 @RestController
 public class RegisterUserController {
 
 	@Autowired
-	private UserService userService;
+	private RegisterUserService registerUserService;
 
 	@Autowired
 	private ModelMapper modelMapper;
 
 	@PostMapping("/users")
-	public void signup(@ModelAttribute UserForm form) {
+	public String signup(@ModelAttribute UserForm form) {
 
 
 		// 型変換
 		User user = this.modelMapper.map(form, User.class);
 
-		this.userService.createUser(user);
+		this.registerUserService.createUser(user);
+
+		return "登録完了";
 
 	}
 

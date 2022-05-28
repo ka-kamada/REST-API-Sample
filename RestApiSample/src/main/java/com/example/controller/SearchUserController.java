@@ -12,33 +12,33 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.bean.SearchUserForm;
 import com.example.bean.User;
 import com.example.bean.UserView;
-import com.example.service.UserService;
+import com.example.service.SearchUserService;
 
 @RestController
 public class SearchUserController {
 
 	@Autowired
-	private UserService userService;
+	private SearchUserService searchUserService;
 
 	@Autowired
 	private ModelMapper modelMapper;
 
 
 	@GetMapping("/users")
-	public List<UserView> searchUserName(@ModelAttribute SearchUserForm form) {
+	public List<UserView> searchUser(@ModelAttribute SearchUserForm form) {
 
 		List<User> list = new ArrayList<User>();
 		List<UserView> listView = new ArrayList<UserView>();
 
 		//それぞれのパターンで検索
 		if(form.getName() != null && form.getBirthdate() == null) {
-			list = this.userService.readUserName(form.getName());
+			list = this.searchUserService.readUserName(form.getName());
 		} else if(form.getName() == null && form.getBirthdate() != null) {
-			list = this.userService.readUserBirthdate(form.getBirthdate());
+			list = this.searchUserService.readUserBirthdate(form.getBirthdate());
 		} else if (form.getName() != null && form.getBirthdate() != null) {
-			list = this.userService.readUser(form.getName(), form.getBirthdate());
+			list = this.searchUserService.readUser(form.getName(), form.getBirthdate());
 		} else if (form.getName() == null && form.getBirthdate() == null) {
-			list = this.userService.readUserAll();
+			list = this.searchUserService.readUserAll();
 		}
 
 		// Listの中身を変換

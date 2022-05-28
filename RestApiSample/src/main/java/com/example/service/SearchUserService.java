@@ -4,12 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.example.bean.User;
-import com.example.bean.UserForm;
 
-public interface UserService {
-
-	/** 登録 */
-	public void createUser(User user);
+public interface SearchUserService {
 
 	/** 名前+生年月日検索 */
 	public List<User> readUser(String name, LocalDate birthdate);
@@ -25,11 +21,5 @@ public interface UserService {
 
 	/** ID検索 */
 	public User readUserId(String id);
-
-	/** 削除 */
-	public void deleteUser(User user);
-
-	/** 更新 */
-	public void updateUser(User user, UserForm form);
 
 }

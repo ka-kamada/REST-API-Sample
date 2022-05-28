@@ -8,26 +8,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bean.User;
 import com.example.bean.UserForm;
-import com.example.service.UserService;
+import com.example.service.SearchUserService;
+import com.example.service.UpdateUserService;
 
 @RestController
 public class UpdateUserController {
 
 	@Autowired
-	private UserService userService;
+	private SearchUserService searchUserService;
+
+	@Autowired
+	private UpdateUserService updateUserService;
 
 	@PatchMapping("/users/{id}")
-	public String deleteUser(@PathVariable("id") String id, @ModelAttribute UserForm form) {
+	public String updateUser(@PathVariable("id") String id, @ModelAttribute UserForm form) {
 
 		// idで検索
-		User user = this.userService.readUserId(id);
+		User user = this.searchUserService.readUserId(id);
 
-		if (user.getId() != null) {
+		if (user != null) {
 			// 持ってきたユーザーを更新
-			this.userService.updateUser(user, form);
-			return "更新完了メッセージ";
-		} else if (user.getId() == null) {
-			return "該当ユーザーなし";
+			this.updateUserService.updateUser(user, form);
+
+			return "user updated";
+
+		} else if (user == null) {
+
+			return "user not found";
 		}
 
 		return "";

@@ -1,51 +1,20 @@
 package com.example.service.impl;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.bean.User;
-import com.example.bean.UserForm;
 import com.example.repository.UserMapper;
-import com.example.service.UserService;
-
-import de.huxhorn.sulky.ulid.ULID;
+import com.example.service.SearchUserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class SearchUserServiceImpl implements SearchUserService {
 
 	@Autowired
 	private UserMapper mapper;
-
-	@Autowired
-	private ULID ulid;
-
-	/** 登録 */
-	@Override
-	public void createUser(User user) {
-
-		user.setId(ulidId());
-
-		LocalDateTime now = LocalDateTime.now();
-		user.setCreatedAt(now);
-		user.setUpdatedAt(now);
-
-		user.setUpdatedBy(user.getCreatedBy());
-
-		this.mapper.setUser(user);
-	}
-
-	/** ID生成 */
-	public String ulidId() {
-
-		String ulidId = this.ulid.nextULID();
-
-		return ulidId;
-
-	}
 
 	/** 名前+生年月日検索 */
 	@Override
@@ -91,29 +60,6 @@ public class UserServiceImpl implements UserService {
 		User user = this.mapper.getUserId(id);
 
 		return user;
-	}
-
-	/** 削除 */
-	@Override
-	public void deleteUser(User user) {
-
-		user.setDeletedAt(LocalDateTime.now());
-
-		this.mapper.deleteUser(user.getId(), user.getDeletedAt());
-
-	}
-
-	/** 更新 */
-	@Override
-	public void updateUser(User user, UserForm form) {
-
-		user.setName(form.getName());
-		user.setBirthdate(form.getBirthdate());
-		user.setUpdatedAt(LocalDateTime.now());
-
-
-		this.mapper.updateUser(user);
-
 	}
 
 }

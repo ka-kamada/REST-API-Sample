@@ -29,6 +29,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.modelmapper.extensions:modelmapper-spring:2.3.9'
 	implementation 'de.huxhorn.sulky:de.huxhorn.sulky.ulid:8.2.0'
+	implementation 'javax.validation:validation-api:2.0.1.Final'
 }
 
 tasks.named('test') {
